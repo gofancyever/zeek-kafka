@@ -33,7 +33,7 @@ RUN ./configure --with-librdkafka=$librdkafka_root
 RUN make
 RUN make install
 RUN ldconfig
-
+RUN zkg autoconfig
 
 
 RUN zeek -N Seiso::Kafka
