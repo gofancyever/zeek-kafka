@@ -37,3 +37,15 @@ RUN zkg autoconfig --force
 
 
 RUN zeek -N Seiso::Kafka
+
+RUN apt-get update && \
+  apt-get -y -q install wget lsb-release gnupg && \
+  wget -q http://apt.ntop.org/20.04/all/apt-ntop.deb && \
+  dpkg -i apt-ntop.deb && \
+  apt-get clean all
+
+RUN apt-get update && \
+  apt-get -y install pfring
+
+RUN echo '#!/bin/bash\nset -e\nexec "$@"' > /run.sh && \
+  chmod +x /run.sh
